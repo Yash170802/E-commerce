@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('admin');
+});
+
+Route::group(['prefix' => 'admin', 'as' => "admin."], function () {
+    Route::get('/', [App\Http\Controllers\Backend\DashboardController::class, 'index'])->name('admin-dashboard');
 });
